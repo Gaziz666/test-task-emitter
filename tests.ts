@@ -22,18 +22,18 @@ function assertItWorks() {
   emitter.subscribe(EventName.EventSuccess, () => {
     handler.setStats(
       EventName.EventSuccess,
-      handler.getStats(EventName.EventSuccess) + 1
+      handler.getStats(EventName.EventSuccess) + 1,
     );
     repository.setStats(
       EventName.EventSuccess,
-      repository.getStats(EventName.EventSuccess) + 1
+      repository.getStats(EventName.EventSuccess) + 1,
     );
   });
 
   emitter.subscribe(EventName.EventFail, () => {
     handler.setStats(
       EventName.EventFail,
-      handler.getStats(EventName.EventFail) + 1
+      handler.getStats(EventName.EventFail) + 1,
     );
   });
 

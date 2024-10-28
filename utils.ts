@@ -4,6 +4,8 @@
 
 */
 
+import { connectRetryDelays } from "./constants";
+
 export function randomTo(ms: number) {
   return Math.floor(Math.random() * ms);
 }
@@ -11,7 +13,7 @@ export function randomTo(ms: number) {
 export async function triggerRandomly(
   clb: VoidFunction,
   maxFires: number,
-  diff: number = 50
+  diff: number = 50,
 ) {
   if (maxFires <= 0) return;
   await awaitTimeout(randomTo(diff));
@@ -22,3 +24,10 @@ export async function triggerRandomly(
 export async function awaitTimeout(ms: number) {
   return new Promise((res) => setTimeout(res, ms));
 }
+
+export const reconnectTimeout = (connectionRetry: number): number => {
+  return (
+    <number>connectRetryDelays[connectionRetry] ??
+    connectRetryDelays[connectRetryDelays.length - 1]
+  );
+};
